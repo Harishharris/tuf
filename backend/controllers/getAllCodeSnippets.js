@@ -12,12 +12,6 @@ const getAllCodeSnippets = async (req, res) => {
   };
 
   try {
-    const response = await axios.request(options);
-    console.log(response.data);
-  } catch (error) {
-    console.error(error);
-  }
-  try {
     const allCodeSnippets = await model.find({});
     return res.json(allCodeSnippets);
   } catch (err) {

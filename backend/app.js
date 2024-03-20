@@ -3,6 +3,7 @@ import dbConnect from './db/dbConnect.js';
 import cors from 'cors';
 import router from './routes/route.js';
 import { config } from 'dotenv';
+import model from './models/schema.js';
 
 const app = express();
 app.use(cors());

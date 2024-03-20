@@ -41,7 +41,7 @@ export function FormPage() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     const { username, input, language, code } = values;
     if (!username || !input || !language || !code) {
       toast({
@@ -50,11 +50,30 @@ export function FormPage() {
       });
       return;
     }
-    toast({
-      title: 'Code Created Successfully',
-      description: 'You can now see your codes.',
-    });
-    console.log(values);
+    try {
+      const response = await fetch('http://localhost:3000', {
+        method: 'POST',
+        body: JSON.stringify(values),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      if (response.ok) {
+        toast({
+          title: 'Code Created Successfully',
+          description: 'You can now see your codes.',
+        });
+      }
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+      toast({
+        variant: 'destructive',
+        title: 'Please try again.',
+      });
+      return;
+    }
   }
 
   return (

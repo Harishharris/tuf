@@ -27,8 +27,6 @@ const createNewCodeSnippet = async (req, res) => {
         stdin: input || '',
       },
     });
-    console.log(code);
-    console.log(response.data);
 
     try {
       const innerResponse = await axios.request({
@@ -42,7 +40,11 @@ const createNewCodeSnippet = async (req, res) => {
       });
 
       stdout = innerResponse.data;
-      console.log({ stdout });
+      const newSnippet = await model.create({
+        ...req.body,
+        output: stdout.stdout,
+      });
+      return res.json(newSnippet);
     } catch (error) {
       console.error(error);
       return res.status(400).send(error.message);
@@ -50,20 +52,6 @@ const createNewCodeSnippet = async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(400).send(error.message);
-  }
-
-  try {
-    console.log({ ...req.body });
-    const createdCodeSnippet = await model.create({
-      username,
-      language: language,
-      input,
-      code,
-      output: stdout,
-    });
-    return res.status(201).json(createdCodeSnippet);
-  } catch (err) {
-    return res.status(400).send(err.message);
   }
 };
 
