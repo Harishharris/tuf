@@ -4,6 +4,10 @@ import { useState } from 'react';
 export default function CodeSnippet({ code }: { code: string }) {
   const [isOpened, setIsOpened] = useState(false);
 
+  if (!code) {
+    return <></>;
+  }
+
   return (
     <>
       {isOpened && code}

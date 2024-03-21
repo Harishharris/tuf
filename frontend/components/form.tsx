@@ -51,7 +51,7 @@ export function FormPage() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:3000', {
+      const response = await fetch('https://tuf-0w06.onrender.com', {
         method: 'POST',
         body: JSON.stringify(values),
         headers: {

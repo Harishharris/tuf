@@ -23,7 +23,7 @@ interface Item {
 async function getData() {
   try {
     console.log(process.env.SERVER_URL);
-    const res = await fetch(process.env.SERVER_URL!, {
+    const res = await fetch('https://tuf-0w06.onrender.com', {
       next: {
         revalidate: 0,
       },

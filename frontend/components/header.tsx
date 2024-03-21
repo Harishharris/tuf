@@ -16,7 +16,7 @@ export default function Header() {
           <li>
             <div className="text-white flex gap-1 hover:cursor-pointer">
               <PlusCircle />
-              <Link href={'/'} className="text-white">
+              <Link href={'/#create'} className="text-white">
                 Create
               </Link>
             </div>
