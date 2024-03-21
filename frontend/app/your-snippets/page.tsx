@@ -22,7 +22,8 @@ interface Item {
 
 async function getData() {
   try {
-    const res = await fetch('http://localhost:3000', {
+    console.log(process.env.SERVER_URL);
+    const res = await fetch(process.env.SERVER_URL!, {
       next: {
         revalidate: 0,
       },
@@ -36,7 +37,7 @@ async function getData() {
 
 export default async function CodeSnippetsTable() {
   const data = await getData();
-  console.log(data);
+
   return (
     <Table>
       <TableCaption>A list of your recent code snippets.</TableCaption>

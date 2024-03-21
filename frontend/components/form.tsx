@@ -65,7 +65,6 @@ export function FormPage() {
           description: 'You can now see your codes.',
         });
       }
-      console.log(data);
     } catch (err) {
       console.log(err);
       toast({
